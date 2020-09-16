@@ -24,6 +24,10 @@ SELECT * FROM STATION
 
 -- SOLUTION: MS SQL, PostgreSQL, Oracle
 SELECT
-  CAST(MAX(long_w) AS numeric(10,4))
+  CAST(long_w AS numeric(10,4))
 FROM STATION
-WHERE LAT_N < 137.2345
+WHERE lat_n = (
+	SELECT MAX(lat_n)
+	FROM STATION
+	WHERE lat_n < 137.2345
+)
